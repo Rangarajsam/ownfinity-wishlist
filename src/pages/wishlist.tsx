@@ -21,7 +21,7 @@ const WishlistPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const wishlist = useSelector((state: RootState) => state.wishlist.wishlistItems) as WishlistItem[];
     const navigate = useNavigate();
-
+    // test comment
     const handleRemoveFromWishlist = async(e: React.MouseEvent<HTMLButtonElement>, id: string) => {
             e.stopPropagation();
             try {
