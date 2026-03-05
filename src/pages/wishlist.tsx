@@ -39,10 +39,13 @@ const WishlistPage = () => {
             console.error("Error fetching wishlist items:", error);
         }
     }
-    const handleGoToDescription = (product: WishlistItem) => {
-        dispatch(setSelectedProduct(product.product));
-        navigate(`/product/${product.product._id}`);
-    };
+      const handleGoToDescription = (item: WishlistItem) => {
+    // Use eventBus to navigate to product in ProductsApp instead of navigate()
+    // This allows cross-app navigation without triggering route errors
+    const { eventBus } = require("container/eventBus");
+    console.log("Wishlist: Emitting remote:navigate to /product/...", item.product._id);
+    eventBus.emit("remote:navigate", `/product/${item.product._id}`);
+  };
 
     useEffect(() => {
         handleGetWishlistItems();
